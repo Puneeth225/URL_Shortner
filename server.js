@@ -1,11 +1,15 @@
 const express = require('express')
 const app = express()
+require('dotenv').config();
 const mongoose = require('mongoose')
 const shortUrl = require('./models/shortUrl')
 
-mongoose.connect('mongodb://localhost:27017/urlShortner',{
-    useNewUrlParser: true
-})
+// mongoose.connect('mongodb://localhost:27017/urlShortner',{
+//     useNewUrlParser: true
+// })
+
+const db_url = process.env.DB_URL;
+mongoose.connect(db_url);
 
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended: false}))
